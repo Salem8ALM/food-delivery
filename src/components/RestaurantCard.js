@@ -4,14 +4,14 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const RestaurantCard = ({ restaurant }) => {
   const navigation = useNavigation();
-
+  
 
   return (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('MenuList', {restaurant})}>
       <Image source={{ uri: restaurant.image }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{restaurant.name}</Text>
-        <Text style={styles.category}>{restaurant.category}</Text>
+        <Text style={styles.category}>{restaurant.category.name}</Text>
         <Text style={styles.details}>
            {restaurant.rating} |  {restaurant.deliveryTime}
         </Text>

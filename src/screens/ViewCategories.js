@@ -1,12 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
 import CategoryList from "../components/CategoryList";
-import restaurantCategories from "../data/Categories";
+import { getAllCategories } from "../api/restaurants";
 
-const ViewCategories = () => {
+const ViewCategories = ({ onCategorySelect }) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getAllCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
     <View>
-      <CategoryList categories={restaurantCategories} />
+      <CategoryList categories={categories} onCategorySelect={onCategorySelect} />
     </View>
   );
 };

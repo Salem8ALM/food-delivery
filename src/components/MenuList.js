@@ -1,17 +1,41 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import restaurants from "../data/Restaurants";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
+import { getRestaurantItems } from "../api/restaurants";
 import MenuCard from "./MenuCard";
+  
+const MenuList = ({ route }) => {
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { restaurant } = route.params;
 
-const MenuList = ({route}) => {
-  // Select a specific restaurant (hardcoded)
-  // const selectedRestaurant = restaurants[0]; // Change index to select other restaurants
-const { restaurant } = route.params;
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const items = await getRestaurantItems(restaurant._id);
+        setMenuItems(items);
+      } catch (error) {
+        console.error("Error fetching menu items:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuItems();
+  }, [restaurant._id]);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>{restaurant.name} Menu</Text>
-      {restaurant.menuItems.map((menuItem) => (
-        <MenuCard key={menuItem.id} menuItem={menuItem} />
+      {menuItems.map((menuItem) => (
+        <MenuCard key={menuItem._id} menuItem={menuItem} />
       ))}
     </View>
   );

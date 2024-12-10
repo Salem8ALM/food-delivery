@@ -1,28 +1,53 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
+import { login } from "../api/auth";
+import UserContext from "../context/UserContext";
 
 const Login = () => {
-  const handleLogin = () => {
-    console.log("Login button pressed");
-  };
   const navigation = useNavigation();
+  const { setUser } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    try {
+      const response = await login(userInfo);
+      setUser(response); // Store user data in context
+    } catch (error) {
+      Alert.alert(
+        "Login Failed", 
+        error.response?.data?.message || "Something went wrong"
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
 
-      <TextInput style={styles.input} placeholder="Enter your username" />
+      <TextInput 
+        style={styles.input} 
+        placeholder="Enter your username"
+        value={userInfo.username}
+        onChangeText={(text) => setUserInfo({...userInfo, username: text})}
+        autoCapitalize="none"
+      />
 
       <TextInput
         style={styles.input}
         placeholder="Enter your password"
+        value={userInfo.password}
+        onChangeText={(text) => setUserInfo({...userInfo, password: text})}
         secureTextEntry
       />
 
@@ -30,9 +55,8 @@ const Login = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
         <Text style={styles.title}>Register </Text>
-
       </TouchableOpacity>
     </View>
   );

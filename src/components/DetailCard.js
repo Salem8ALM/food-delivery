@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from "react-native";    
 import React from "react";
-import restaurants from "../data/Restaurants";
-
+import { useNavigation } from "@react-navigation/native";
 const DetailCard = ({ route }) => {
-  // const menuItem = restaurants[0].menuItems[0];
+  const navigation = useNavigation();
   const { menuItem } = route.params;
   return (
     <View style={styles.card}>
@@ -13,14 +12,12 @@ const DetailCard = ({ route }) => {
         <Text style={styles.category}>${menuItem.price.toFixed(2)}</Text>
         <Text style={styles.details}>{menuItem.description}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Cart', {menuItem})}>
         <Text>CART PLUS LOGO</Text>
       </TouchableOpacity>
     </View>
   );
 };
-
-export default DetailCard;
 
 const styles = StyleSheet.create({
   card: {
@@ -58,3 +55,5 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
+
+export default DetailCard;

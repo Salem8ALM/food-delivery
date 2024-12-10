@@ -1,17 +1,20 @@
 import React from "react";
-import { ScrollView, View, StyleSheet } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
-const RestaurantList = ({ restaurants }) => {
-  
+const RestaurantsList = ({ restaurants }) => {
+  console.log(restaurants);
   return (
-    <ScrollView style={styles.container}>
-      {restaurants.map((restaurant) => (
-        <View key={restaurant.id} style={styles.cardContainer}>
-          <RestaurantCard restaurant={restaurant} />
-        </View>
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      <FlatList
+        data={restaurants}
+        renderItem={({ item }) => (
+          <View key={item._id} style={styles.cardContainer}>
+            <RestaurantCard restaurant={item} />
+          </View>
+        )}
+      />
+    </View>
   );
 };
 
@@ -21,8 +24,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   cardContainer: {
-    marginBottom: 10, 
+    marginBottom: 10,
   },
 });
 
-export default RestaurantList;
+export default RestaurantsList;

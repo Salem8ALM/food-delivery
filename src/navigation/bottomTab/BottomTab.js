@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeNavigation from "../homeNav/HomeNavigation";
-import AuthNavigation from "../authNav/AuthNavigation";
-import Entypo from '@expo/vector-icons/Entypo';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import Profile from "../../components/Profile";
+import Entypo from "@expo/vector-icons/Entypo";
+import AntDesign from "@expo/vector-icons/AntDesign";
+
 const Tab = createBottomTabNavigator();
+
 const BottomTab = () => {
   return (
-    <Tab.Navigator screenOptions={{
+    <Tab.Navigator
+      screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "blue"
-
-    }}>
+        tabBarActiveTintColor: "blue",
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeNavigation}
@@ -22,11 +25,15 @@ const BottomTab = () => {
           ),
         }}
       />
-      <Tab.Screen name="auth" component={AuthNavigation} options={{
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="profile" size={24} color="black" />
           ),
-        }}/>
+        }}
+      />
     </Tab.Navigator>
   );
 };
