@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { register } from "../api/auth";
+import { AntDesign } from "@expo/vector-icons";
 
 const Signup = () => {
   const navigation = useNavigation();
@@ -64,38 +65,52 @@ const Signup = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
+      <Text style={styles.logo}>Create Account</Text>
 
       <TouchableOpacity style={styles.imageContainer} onPress={pickImage}>
         {userInfo.image ? (
           <Image source={{ uri: userInfo.image }} style={styles.image} />
         ) : (
-          <Text style={styles.imagePlaceholder}>Tap to select profile image</Text>
+          <View style={styles.imagePlaceholder}>
+            <AntDesign name="camerao" size={40} color="green" />
+            <Text style={styles.imagePlaceholderText}>Add Photo</Text>
+          </View>
         )}
       </TouchableOpacity>
 
-      <TextInput 
-        style={styles.input} 
-        placeholder="Enter your username"
-        value={userInfo.username}
-        onChangeText={(text) => setUserInfo({...userInfo, username: text})}
-        autoCapitalize="none"
-      />
+      <View style={styles.inputContainer}>
+        <AntDesign name="user" size={20} color="green" style={styles.icon} />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Username"
+          placeholderTextColor="#B3B3B3"
+          value={userInfo.username}
+          onChangeText={(text) => setUserInfo({...userInfo, username: text})}
+          autoCapitalize="none"
+        />
+      </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your password"
-        value={userInfo.password}
-        onChangeText={(text) => setUserInfo({...userInfo, password: text})}
-        secureTextEntry
-      />
+      <View style={styles.inputContainer}>
+        <AntDesign name="lock" size={20} color="green" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#B3B3B3"
+          value={userInfo.password}
+          onChangeText={(text) => setUserInfo({...userInfo, password: text})}
+          secureTextEntry
+        />
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text style={styles.title}>Login </Text>
+      <TouchableOpacity 
+        style={styles.loginLink} 
+        onPress={() => navigation.navigate("Login")}
+      >
+        <Text style={styles.loginText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>
   );
@@ -106,59 +121,77 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#191414",
     padding: 20,
   },
-  title: {
-    fontSize: 24,
+  logo: {
+    fontSize: 28,
     fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    backgroundColor: "#fff",
-  },
-  button: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#28a745",
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+    color: "green",
+    marginBottom: 30,
   },
   imageContainer: {
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: "#f0f0f0",
-    alignSelf: "center",
-    marginBottom: 20,
+    backgroundColor: "#282828",
+    marginBottom: 30,
     overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#ccc",
+    borderWidth: 2,
+    borderColor: "green",
   },
   image: {
     width: "100%",
     height: "100%",
   },
   imagePlaceholder: {
-    color: "#666",
-    textAlign: "center",
-    padding: 10,
+    alignItems: 'center',
+  },
+  imagePlaceholderText: {
+    color: "green",
+    marginTop: 5,
+    fontSize: 14,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: "100%",
+    height: 50,
+    backgroundColor: "#282828",
+    borderRadius: 8,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    color: "#FFFFFF",
+    fontSize: 16,
+  },
+  button: {
+    width: "100%",
+    height: 50,
+    backgroundColor: "green",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  loginLink: {
+    marginTop: 20,
+  },
+  loginText: {
+    color: "#B3B3B3",
+    fontSize: 14,
   },
 });
 

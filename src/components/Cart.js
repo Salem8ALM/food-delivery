@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 const Cart = ({ route }) => {
   // Initialize cartItems with the first item from route params
@@ -18,6 +19,7 @@ const Cart = ({ route }) => {
             : i
         );
       }
+      navigation.navigate('HomeScreen');
       return [...prev, { ...item, quantity: 1 }];
     });
   };
@@ -66,7 +68,7 @@ const Cart = ({ route }) => {
                   onPress={() => updateQuantity(item._id, item.quantity - 1)}
                   style={styles.quantityButton}
                 >
-                  <AntDesign name="minuscircleo" size={24} color="black" />
+                  <AntDesign name="minuscircleo" size={24} color="white" />
                 </TouchableOpacity>
                 
                 <Text style={styles.quantity}>{item.quantity}</Text>
@@ -75,7 +77,7 @@ const Cart = ({ route }) => {
                   onPress={() => updateQuantity(item._id, item.quantity + 1)}
                   style={styles.quantityButton}
                 >
-                  <AntDesign name="pluscircleo" size={24} color="black" />
+                  <AntDesign name="pluscircleo" size={24} color="white" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -102,19 +104,19 @@ const Cart = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#191414', // Dark grey background
   },
   itemsContainer: {
     flex: 1,
     marginBottom: 120, // Space for total container
   },
   card: {
-    flexDirection: "row",
+    flexDirection: 'row',
     margin: 10,
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: '#282828', // Dark grey background
     borderRadius: 8,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
@@ -127,28 +129,24 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     marginLeft: 10,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   name: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
+    fontWeight: 'bold',
+    color: '#FFFFFF', // White text
   },
   price: {
     fontSize: 14,
-    color: "#888",
+    color: '#FFFFFF', // White text
     marginVertical: 4,
-  },
-  details: {
-    fontSize: 12,
-    color: "#666",
   },
   quantityContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
-    backgroundColor: 'white',
+    backgroundColor: '#282828', // Dark grey background
     marginTop: 10,
   },
   quantityButton: {
@@ -157,6 +155,7 @@ const styles = StyleSheet.create({
   quantity: {
     fontSize: 18,
     marginHorizontal: 20,
+    color: '#FFFFFF', // White text
   },
   totalContainer: {
     position: 'absolute',
@@ -164,17 +163,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#282828', // Dark grey background
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: '#1DB954',
   },
   totalText: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#FFFFFF', // White text
   },
   checkoutButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: 'green',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
   emptyCartText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#FFFFFF', // White text
   },
   removeButton: {
     position: 'absolute',

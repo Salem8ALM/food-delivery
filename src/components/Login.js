@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { login } from "../api/auth";
 import UserContext from "../context/UserContext";
+import { AntDesign } from "@expo/vector-icons";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -33,30 +34,41 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.logo}>Nutrients.</Text>
+      
+      <View style={styles.inputContainer}>
+        <AntDesign name="user" size={20} color="green" style={styles.icon} />
+        <TextInput 
+          style={styles.input} 
+          placeholder="Username"
+          placeholderTextColor="#B3B3B3"
+          value={userInfo.username}
+          onChangeText={(text) => setUserInfo({...userInfo, username: text})}
+          autoCapitalize="none"
+        />
+      </View>
 
-      <TextInput 
-        style={styles.input} 
-        placeholder="Enter your username"
-        value={userInfo.username}
-        onChangeText={(text) => setUserInfo({...userInfo, username: text})}
-        autoCapitalize="none"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your password"
-        value={userInfo.password}
-        onChangeText={(text) => setUserInfo({...userInfo, password: text})}
-        secureTextEntry
-      />
+      <View style={styles.inputContainer}>
+        <AntDesign name="lock" size={20} color="green" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#B3B3B3"
+          value={userInfo.password}
+          onChangeText={(text) => setUserInfo({...userInfo, password: text})}
+          secureTextEntry
+        />
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-        <Text style={styles.title}>Register </Text>
+      <TouchableOpacity 
+        style={styles.registerLink} 
+        onPress={() => navigation.navigate("Signup")}
+      >
+        <Text style={styles.registerText}>Don't have an account? Register</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,37 +79,53 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#191414",
     padding: 20,
   },
-  title: {
-    fontSize: 24,
+  logo: {
+    fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
+    color: "green",
+    marginBottom: 50,
   },
-  input: {
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     width: "100%",
     height: 50,
-    borderColor: "#ccc",
-    borderWidth: 1,
+    backgroundColor: "#282828",
     borderRadius: 8,
-    paddingHorizontal: 10,
     marginBottom: 15,
-    backgroundColor: "#fff",
+    paddingHorizontal: 15,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    color: "#FFFFFF",
+    fontSize: 16,
   },
   button: {
     width: "100%",
     height: 50,
-    backgroundColor: "#007bff",
+    backgroundColor: "green",
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 10,
   },
   buttonText: {
-    color: "#fff",
+    color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  registerLink: {
+    marginTop: 20,
+  },
+  registerText: {
+    color: "#B3B3B3",
+    fontSize: 14,
   },
 });
 

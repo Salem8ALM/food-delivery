@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
     paddingHorizontal: 10,
+    backgroundColor: '#191414',
   },
   categoryCard: {
     alignItems: 'center',
@@ -49,17 +50,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-    color: '#333',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
   allCategory: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#1DB954',
     justifyContent: 'center',
     alignItems: 'center',
   },
   allCategoryText: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FFFFFF',
   }
 });
 

@@ -8,11 +8,51 @@ const Stack= createNativeStackNavigator();
 
 const AuthNavigation = () => {
   return (
-    <Stack.Navigator>
-        <Stack.Screen name='Login' component={Login}/>
-        <Stack.Screen name='Signup' component={Signup}/>
-
-
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#191414',
+        },
+        headerTintColor: 'green',
+        headerTitleStyle: {
+          color: 'green',
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          title: "",
+          headerLeft: () => (
+            <Text style={{ 
+              color: 'green', 
+              fontSize: 20, 
+              fontWeight: 'bold',
+              marginLeft: 15 
+            }}>
+              Nutrients.
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{
+          title: "",
+          headerLeft: () => (
+            <Text style={{ 
+              color: 'green', 
+              fontSize: 20, 
+              fontWeight: 'bold',
+              marginLeft: 15 
+            }}>
+              Nutrients.
+            </Text>
+          ),
+        }}
+      />
     </Stack.Navigator>
   )
 }

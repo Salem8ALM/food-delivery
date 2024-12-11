@@ -13,7 +13,9 @@ const BottomTab = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "blue",
+        tabBarActiveTintColor: "lightgrey",
+        tabBarInactiveTintColor: "green",
+        tabBarStyle: { backgroundColor: '#191414' },
       }}
     >
       <Tab.Screen
@@ -21,7 +23,7 @@ const BottomTab = () => {
         component={HomeNavigation}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="home" size={24} color="black" />
+            <Entypo name="home" size={24} color="green" />
           ),
         }}
       />
@@ -30,7 +32,7 @@ const BottomTab = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="profile" size={24} color="black" />
+            <AntDesign name="profile" size={24} color="green" />
           ),
         }}
       />

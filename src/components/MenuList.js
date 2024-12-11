@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
 import { getRestaurantItems } from "../api/restaurants";
 import MenuCard from "./MenuCard";
-  
+
 const MenuList = ({ route }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,13 +45,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#191414", // Dark grey background
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
+    color: "#FFFFFF", // White text
   },
 });
 

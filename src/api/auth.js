@@ -35,6 +35,9 @@ const register = async (userInfo) => {
 const getProfile = async () => {
   try {
     const response = await instance.get("/auth/profile");
+    if (response.data.image) {
+      response.data.image = response.data.image.replace('/api/', '/');
+    }
     return response.data;
   } catch (error) {
     console.error('Profile fetch error:', error.response?.data || error.message);

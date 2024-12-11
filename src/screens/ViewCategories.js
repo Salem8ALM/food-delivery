@@ -20,7 +20,7 @@ const ViewCategories = ({ onCategorySelect }) => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <CategoryList categories={categories} onCategorySelect={onCategorySelect} />
     </View>
   );
@@ -28,4 +28,8 @@ const ViewCategories = ({ onCategorySelect }) => {
 
 export default ViewCategories;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#191414', // Dark grey background
+  },
+});

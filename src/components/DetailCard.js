@@ -1,58 +1,87 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from "react-native";    
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
+
 const DetailCard = ({ route }) => {
   const navigation = useNavigation();
   const { menuItem } = route.params;
   return (
-    <View style={styles.card}>
+    <View style={styles.container}>
       <Image source={{ uri: menuItem.image }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{menuItem.name}</Text>
-        <Text style={styles.category}>${menuItem.price.toFixed(2)}</Text>
+        <Text style={styles.price}>${menuItem.price.toFixed(2)}</Text>
         <Text style={styles.details}>{menuItem.description}</Text>
+        <TouchableOpacity 
+          style={styles.addButton} 
+          onPress={() => navigation.navigate('Cart', {menuItem})}
+        >
+          <AntDesign name="plus" size={32} color="green" />
+          <Text style={styles.addButtonText}>Add to Cart</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('Cart', {menuItem})}>
-        <Text>CART PLUS LOGO</Text>
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    flexDirection: "row",
-    margin: 10,
-    padding: 10,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+  container: {
+    flex: 1,
+    backgroundColor: '#191414',
   },
   image: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
+    width: '100%',
+    height: 300,
   },
   infoContainer: {
     flex: 1,
-    marginLeft: 10,
-    justifyContent: "center",
+    padding: 20,
+    backgroundColor: '#282828',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    marginTop: -30,
   },
   name: {
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: "bold",
-    color: "#333",
+    color: "#FFFFFF",
+    marginBottom: 10,
   },
-  category: {
-    fontSize: 14,
-    color: "#888",
+  price: {
+    fontSize: 24,
+    color: "green",
+    marginBottom: 20,
   },
   details: {
-    fontSize: 12,
-    color: "#666",
+    fontSize: 18,
+    color: "#B3B3B3",
+    lineHeight: 24,
+    marginBottom: 30,
+  },
+  addButton: {
+    flexDirection: 'row',
+    backgroundColor: '#282828',
+    padding: 15,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    borderWidth: 2,
+    borderColor: 'green',
+  },
+  addButtonText: {
+    color: 'green',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 

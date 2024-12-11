@@ -3,7 +3,6 @@ import { View, StyleSheet, FlatList } from "react-native";
 import RestaurantCard from "./RestaurantCard";
 
 const RestaurantsList = ({ restaurants }) => {
-  console.log(restaurants);
   return (
     <View style={styles.container}>
       <FlatList
@@ -21,7 +20,7 @@ const RestaurantsList = ({ restaurants }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: '#191414', // Dark grey background
   },
   cardContainer: {
     marginBottom: 10,

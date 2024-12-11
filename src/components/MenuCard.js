@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
 
 const MenuCard = ({ menuItem }) => {
   const navigation = useNavigation();
@@ -12,15 +13,15 @@ const MenuCard = ({ menuItem }) => {
         style={styles.image}
       />
       <View style={styles.infoContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Detail",{menuItem})}>
-        <Text style={styles.name}>{menuItem.name}</Text>
-        <Text style={styles.category}>${menuItem.price.toFixed(2)}</Text>
-        <Text style={styles.details}>{menuItem.description}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Detail", { menuItem })}>
+          <Text style={styles.name}>{menuItem.name}</Text>
+          <Text style={styles.category}>${menuItem.price.toFixed(2)}</Text>
+          <Text style={styles.details}>{menuItem.description}</Text>
         </TouchableOpacity>
  
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Cart', {menuItem})}>
-        <Text>CART PLUS LOGO</Text>
+        <AntDesign name="plus" size={24} color="green" />
       </TouchableOpacity>
     </View>
   );
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 10,
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#282828",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOpacity: 0.1,
@@ -53,14 +54,14 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#333",
+    color: "#FFFFFF",
   },
   category: {
     fontSize: 14,
-    color: "#888",
+    color: "#B3B3B3",
   },
   details: {
     fontSize: 12,
-    color: "#666",
+    color: "#B3B3B3",
   },
 });
